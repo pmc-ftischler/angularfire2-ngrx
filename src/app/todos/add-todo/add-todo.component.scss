@@ -1,3 +1,15 @@
+@import "../../../_material-theme.scss";
+
+h3 {
+  font-family: 'Roboto';
+}
+
 .todos-input {
   width: 100%;
+}
+
+.todos-validation {
+  font-family: 'Roboto';
+  width: 100%;
+  color: mat-color($warn);
 }

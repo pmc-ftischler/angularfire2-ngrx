@@ -1,4 +1,7 @@
 {
   "app.title": "Ngrx Angularfire 2 Demo Todos App",
-  "todos.header": "To-Dos"
+  "todos.header": "To-Dos",
+  "todos.addTodo.titleInput.error": "Bitte fülle das Feld \"Titel\" vollständig aus.",
+  "todos.addTodo.textInput.error": "Bitte fülle das Feld \"Text\" vollständig aus.",
+  "todos.addTodo.title": "Neues To-Do hinzufügen"
 }

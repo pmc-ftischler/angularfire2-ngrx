@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Todo } from './models/todo';
 import { TodosService } from './services/todos.service';
-import { MdDialog } from '@angular/material';
+import { MdDialog, MdDialogConfig } from '@angular/material';
 import { AddTodoComponent } from './add-todo/add-todo.component';
 
 @Component({
@@ -19,7 +19,10 @@ export class TodosComponent implements OnInit {
   }
 
   openDialog() {
-    const dialogRef = this.mdDialog.open(AddTodoComponent);
+    const dialogConfig: MdDialogConfig = new MdDialogConfig();
+    dialogConfig.width = '50%';
+
+    const dialogRef = this.mdDialog.open(AddTodoComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
     });
