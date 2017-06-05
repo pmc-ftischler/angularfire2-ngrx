@@ -6,6 +6,7 @@ import { AngularFireModule } from 'angularfire2';
 import { FIREBASE_CONFIG } from './config/firebase.conf';
 import { AppRoutingModule } from './app-routing.module';
 import { ToolbarModule } from './toolbar/toolbar.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -13,12 +14,15 @@ import { ToolbarModule } from './toolbar/toolbar.module';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
     ToolbarModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule {
 }

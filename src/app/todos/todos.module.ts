@@ -3,7 +3,9 @@ import { CommonModule } from '@angular/common';
 
 import { TodosRoutingModule } from './todos-routing.module';
 import { TodosComponent } from './todos.component';
-import { MdButtonModule, MdCardModule, MdIconModule, MdListModule } from '@angular/material';
+import { MdButtonModule, MdCardModule, MdIconModule, MdListModule, MdProgressSpinnerModule } from '@angular/material';
+import { TodosService } from './services/todos.service';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 @NgModule({
   imports: [
@@ -12,8 +14,15 @@ import { MdButtonModule, MdCardModule, MdIconModule, MdListModule } from '@angul
     MdCardModule,
     MdButtonModule,
     MdListModule,
-    MdIconModule
+    MdIconModule,
+    MdProgressSpinnerModule,
+    AngularFireDatabaseModule
   ],
-  declarations: [TodosComponent]
+  declarations: [
+    TodosComponent
+  ],
+  providers: [
+    TodosService
+  ]
 })
 export class TodosModule { }
