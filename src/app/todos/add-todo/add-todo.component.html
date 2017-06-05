@@ -1,0 +1,9 @@
+<form [formGroup]="formGroup" (submit)="submit()">
+  <md-input-container class="todos-input">
+    <input type="text" formControlName="title" placeholder="Titel">
+  </md-input-container>
+  <md-input-container class="todos-input">
+    <input type="text" formControlName="title" placeholder="Text">
+  </md-input-container>
+  <button md-button type="submit">Absenden</button>
+</form>

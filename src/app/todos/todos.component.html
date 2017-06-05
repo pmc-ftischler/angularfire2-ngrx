@@ -1,14 +1,14 @@
 <md-card class="todos-card">
   <md-card-header>
-    <h1>Todos</h1>
+    <h1>{{ 'todos.header' | translate }}</h1>
   </md-card-header>
   <md-divider></md-divider>
   <md-card-content>
     <md-list>
       <md-list-item *ngFor="let todo of todos | async">
         <md-icon md-list-icon>content_paste</md-icon>
-        <h4 md-line>{{todo?.title}}</h4>
-        <p md-line>{{todo?.text}}</p>
+        <h4 md-line>{{ todo?.title }}</h4>
+        <p md-line>{{ todo?.text }}</p>
       </md-list-item>
     </md-list>
     <md-spinner color="primary" class="todos-spinner" *ngIf="!(todos | async)"></md-spinner>
