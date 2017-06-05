@@ -4,8 +4,8 @@
   </md-card-header>
   <md-divider></md-divider>
   <md-card-content>
-    <md-list *ngIf="todos | async">
-      <md-list-item *ngFor="let todo of todos | async">
+    <md-list *ngIf="todos | async; else spinner; let todos">
+      <md-list-item *ngFor="let todo of todos">
         <md-icon md-list-icon>content_paste</md-icon>
         <h4 md-line>{{ todo?.title }}</h4>
         <p md-line>{{ todo?.text }}</p>
@@ -14,8 +14,10 @@
         </button>
       </md-list-item>
     </md-list>
-    <md-spinner color="primary" class="todos-spinner" *ngIf="!(todos | async)"></md-spinner>
-    <p *ngIf="(todos | async) && (todos | async)?.length < 1">{{ 'todos.noTodos' | translate }}</p>
+    <ng-template #spinner>
+      <md-spinner color="primary" class="todos-spinner"></md-spinner>
+    </ng-template>
+    <p *ngIf="(todos | async)?.length === 0">{{ 'todos.noTodos' | translate }}</p>
   </md-card-content>
 </md-card>
 <button md-fab class="todos-add-button" (click)="openNewTodoDialog()">
