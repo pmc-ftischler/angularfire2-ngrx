@@ -5,28 +5,54 @@ import { Todo } from '../models/todo';
 import { APP_CONFIG } from '../../config/app.conf';
 
 import 'rxjs/add/observable/from';
+import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/share';
 
 @Injectable()
 export class TodosService {
 
+  /**
+   * Constructor of TodosService
+   * @param angularFireDatabase
+   */
   constructor(private angularFireDatabase: AngularFireDatabase) {
   }
 
+  /**
+   * Gets TodoElements from Firebase Live Database
+   * @returns {Observable<T>}
+   */
   public getTodos(): Observable<Todo[]> {
     return this.angularFireDatabase.list(APP_CONFIG.databaseName)
       .share();
   }
 
-  public addTodo(todo: Todo): Observable<void> {
-    return Observable.from(this.angularFireDatabase.list(APP_CONFIG.databaseName).push(todo));
+  /**
+   * Adds todoElement to Firebase Live Database
+   * @param todoElement
+   * @returns {Observable<void>}
+   */
+  public addTodo(todoElement: Todo): Observable<void> {
+    return Observable.from(this.angularFireDatabase.list(APP_CONFIG.databaseName).push(todoElement));
   }
 
-  public removeTodo(todo: Todo): Observable <void> {
-    return Observable.from(this.angularFireDatabase.object(`${APP_CONFIG.databaseName}/${todo._id}`).remove());
+  /**
+   * Removes todoElement from Firebase Live Database
+   * @param todoElement
+   * @returns {Observable<void>}
+   */
+  public removeTodo(todoElement: Todo): Observable<void> {
+    return Observable.from(this.angularFireDatabase.object(`${APP_CONFIG.databaseName}/${todoElement.$key}`).remove());
   }
 
-  public updateTodo(todo: Todo): Observable<void> {
-    return Observable.from(this.angularFireDatabase.object(`${APP_CONFIG.databaseName}/${todo._id}`).update(todo));
+  /**
+   * Updates todoElement from Firebase Live Database
+   * @param todoElement
+   * @returns {Observable<void>}
+   */
+  public updateTodo(todoElement: Todo): Observable<void> {
+    return Observable.from(this.angularFireDatabase
+      .object(`${APP_CONFIG.databaseName}/${todoElement.$key}`)
+      .update(todoElement));
   }
 }

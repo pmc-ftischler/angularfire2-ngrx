@@ -1,5 +1,5 @@
 export interface Todo {
-  _id?: string;
+  $key?: string;
   title: string;
   text: string;
 }

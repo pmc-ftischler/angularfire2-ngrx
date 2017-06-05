@@ -9,7 +9,7 @@ import {
   MdDialogModule,
   MdIconModule, MdInputModule,
   MdListModule,
-  MdProgressSpinnerModule
+  MdProgressSpinnerModule, MdSnackBarModule
 } from '@angular/material';
 import { TodosService } from './services/todos.service';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -30,6 +30,7 @@ import { TranslateModule } from '@ngx-translate/core';
     MdDialogModule,
     MdInputModule,
     MdProgressSpinnerModule,
+    MdSnackBarModule,
     AngularFireDatabaseModule
   ],
   declarations: [

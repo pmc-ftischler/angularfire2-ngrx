@@ -14,8 +14,16 @@ export class AddTodoComponent {
     text: new FormControl('', Validators.required)
   });
 
-  constructor(public mdDialogRef: MdDialogRef<AddTodoComponent>) { }
+  /**
+   * Constructor of AddTodoComponent
+   * @param mdDialogRef
+   */
+  constructor(public mdDialogRef: MdDialogRef<AddTodoComponent>) {
+  }
 
+  /**
+   * Submits the input values
+   */
   submit() {
     const todo: Todo = {
       title: this.title.value,
@@ -24,14 +32,25 @@ export class AddTodoComponent {
     this.mdDialogRef.close(this.formGroup.value);
   }
 
+  /**
+   * Closes the dialog
+   */
   closeDialog() {
     this.mdDialogRef.close();
   }
 
+  /**
+   * Getter for title
+   * @returns {AbstractControl|null}
+   */
   public get title() {
     return this.formGroup.get('title');
   }
 
+  /**
+   * Getter for text
+   * @returns {AbstractControl|null}
+   */
   public get text() {
     return this.formGroup.get('text');
   }
