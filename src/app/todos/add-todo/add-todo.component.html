@@ -1,18 +1,23 @@
 <h3 md-line>{{ 'todos.addTodo.title' | translate }}</h3>
 <form [formGroup]="formGroup" (submit)="submit()">
   <md-input-container class="todos-input">
-    <input mdInput type="text" formControlName="title" placeholder="Titel">
+    <input mdInput type="text" formControlName="title"
+           placeholder="{{ 'todos.addTodo.titleInput.placeholder' | translate }}">
   </md-input-container>
   <div class="todos-validation">
     <small *ngIf="title.errors && title.touched">{{ 'todos.addTodo.titleInput.error' | translate }}</small>
   </div>
   <md-input-container class="todos-input">
-    <input mdInput type="text" formControlName="text" placeholder="Text">
+    <input mdInput type="text" formControlName="text"
+           placeholder="{{ 'todos.addTodo.textInput.placeholder' | translate }}">
   </md-input-container>
   <div class="todos-validation">
     <small *ngIf="text.errors && text.touched">{{ 'todos.addTodo.textInput.error' | translate }}</small>
   </div>
   <br>
   <br>
-  <button md-button type="submit">Absenden</button>
+  <button md-button type="submit" [disabled]="!formGroup.valid">
+    {{ 'todos.addTodo.submitButton.text' | translate }}
+  </button>
+  <button type="button" md-button (click)="closeDialog()">{{ 'todos.addTodo.cancelButton.text' | translate }}</button>
 </form>

@@ -3,5 +3,9 @@
   "todos.header": "To-Dos",
   "todos.addTodo.titleInput.error": "Bitte fülle das Feld \"Titel\" vollständig aus.",
   "todos.addTodo.textInput.error": "Bitte fülle das Feld \"Text\" vollständig aus.",
-  "todos.addTodo.title": "Neues To-Do hinzufügen"
+  "todos.addTodo.title": "Neues To-Do hinzufügen",
+  "todos.addTodo.titleInput.placeholder": "Titel *",
+  "todos.addTodo.textInput.placeholder": "Text *",
+  "todos.addTodo.submitButton.text": "Absenden",
+  "todos.addTodo.cancelButton.text": "Abbrechen"
 }

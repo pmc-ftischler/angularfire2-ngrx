@@ -24,6 +24,10 @@ export class AddTodoComponent {
     this.mdDialogRef.close(this.formGroup.value);
   }
 
+  closeDialog() {
+    this.mdDialogRef.close();
+  }
+
   public get title() {
     return this.formGroup.get('title');
   }

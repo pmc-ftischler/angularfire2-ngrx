@@ -20,7 +20,7 @@ export class TodosComponent implements OnInit {
 
   openDialog() {
     const dialogConfig: MdDialogConfig = new MdDialogConfig();
-    dialogConfig.width = '50%';
+    dialogConfig.width = '400px';
 
     const dialogRef = this.mdDialog.open(AddTodoComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
