@@ -8,5 +8,6 @@
   "todos.addTodo.titleInput.placeholder": "Titel *",
   "todos.addTodo.textInput.placeholder": "Text *",
   "todos.addTodo.submitButton.text": "Absenden",
-  "todos.addTodo.cancelButton.text": "Abbrechen"
+  "todos.addTodo.cancelButton.text": "Abbrechen",
+  "todos.noTodos": "Zurzeit existieren keine To-Dos. Füge jetzt ein neues Element hinzu!"
 }

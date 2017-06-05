@@ -23,7 +23,8 @@ export class TodosService {
    * @returns {Observable<T>}
    */
   public getTodos(): Observable<Todo[]> {
-    return this.angularFireDatabase.list(APP_CONFIG.databaseName)
+    return this.angularFireDatabase
+      .list(APP_CONFIG.databaseName)
       .share();
   }
 
@@ -33,7 +34,9 @@ export class TodosService {
    * @returns {Observable<void>}
    */
   public addTodo(todoElement: Todo): Observable<void> {
-    return Observable.from(this.angularFireDatabase.list(APP_CONFIG.databaseName).push(todoElement));
+    return Observable.from(this.angularFireDatabase
+      .list(APP_CONFIG.databaseName)
+      .push(todoElement));
   }
 
   /**
@@ -42,7 +45,9 @@ export class TodosService {
    * @returns {Observable<void>}
    */
   public removeTodo(todoElement: Todo): Observable<void> {
-    return Observable.from(this.angularFireDatabase.object(`${APP_CONFIG.databaseName}/${todoElement.$key}`).remove());
+    return Observable.from(this.angularFireDatabase
+      .object(`${APP_CONFIG.databaseName}/${todoElement.$key}`)
+      .remove());
   }
 
   /**

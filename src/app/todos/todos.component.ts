@@ -36,10 +36,18 @@ export class TodosComponent {
     dialogRef.afterClosed().subscribe(todo => {
       if (todo) {
         const snackBarConfig = new MdSnackBarConfig();
-        snackBarConfig.duration = 1000;
+        snackBarConfig.duration = 2000;
         this.mdSnackBar.open(this.translateService.instant('todos.snackBar.addTodoSuccess'), null, snackBarConfig);
         this.todosService.addTodo(todo);
       }
     });
+  }
+
+  /**
+   * Removes a TodoElement from the list
+   * @param todoElement
+   */
+  removeTodo(todoElement: Todo) {
+    this.todosService.removeTodo(todoElement);
   }
 }

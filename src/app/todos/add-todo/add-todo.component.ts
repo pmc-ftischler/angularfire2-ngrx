@@ -43,7 +43,7 @@ export class AddTodoComponent {
    * Getter for title
    * @returns {AbstractControl|null}
    */
-  public get title() {
+  get title() {
     return this.formGroup.get('title');
   }
 
@@ -51,7 +51,7 @@ export class AddTodoComponent {
    * Getter for text
    * @returns {AbstractControl|null}
    */
-  public get text() {
+  get text() {
     return this.formGroup.get('text');
   }
 }
