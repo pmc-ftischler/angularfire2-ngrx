@@ -15,17 +15,15 @@ export class TodosService {
    * Constructor of TodosService
    * @param angularFireDatabase
    */
-  constructor(private angularFireDatabase: AngularFireDatabase) {
-  }
+  constructor(private angularFireDatabase: AngularFireDatabase) { }
 
   /**
    * Gets TodoElements from Firebase Live Database
    * @returns {Observable<T>}
    */
-  public getTodos(): Observable<Todo[]> {
+  getTodos(): Observable<Todo[]> {
     return this.angularFireDatabase
-      .list(APP_CONFIG.databaseName)
-      .share();
+      .list(APP_CONFIG.databaseName);
   }
 
   /**
@@ -33,7 +31,7 @@ export class TodosService {
    * @param todoElement
    * @returns {Observable<void>}
    */
-  public addTodo(todoElement: Todo): Observable<void> {
+  addTodo(todoElement: Todo): Observable<void> {
     return Observable.from(this.angularFireDatabase
       .list(APP_CONFIG.databaseName)
       .push(todoElement));
@@ -44,7 +42,7 @@ export class TodosService {
    * @param todoElement
    * @returns {Observable<void>}
    */
-  public removeTodo(todoElement: Todo): Observable<void> {
+  removeTodo(todoElement: Todo): Observable<void> {
     return Observable.from(this.angularFireDatabase
       .object(`${APP_CONFIG.databaseName}/${todoElement.$key}`)
       .remove());
@@ -55,7 +53,7 @@ export class TodosService {
    * @param todoElement
    * @returns {Observable<void>}
    */
-  public updateTodo(todoElement: Todo): Observable<void> {
+  updateTodo(todoElement: Todo): Observable<void> {
     return Observable.from(this.angularFireDatabase
       .object(`${APP_CONFIG.databaseName}/${todoElement.$key}`)
       .update(todoElement));

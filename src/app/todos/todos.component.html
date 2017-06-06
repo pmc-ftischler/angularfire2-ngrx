@@ -7,7 +7,7 @@
     <md-list *ngIf="todos | async; else spinner; let todos">
       <md-list-item *ngFor="let todo of todos">
         <md-icon md-list-icon>content_paste</md-icon>
-        <h4 md-line>{{ todo?.title }}</h4>
+        <h4 md-line><strong>{{ todo?.title }}</strong></h4>
         <p md-line>{{ todo?.text }}</p>
         <button md-icon-button (click)="removeTodo(todo)">
           <md-icon>delete</md-icon>

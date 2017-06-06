@@ -16,6 +16,12 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AddTodoComponent } from './add-todo/add-todo.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
+import { TodoEffects } from './effects/todo-effects';
+import { TodoActions } from './actions/todo-actions';
+import { StoreModule } from '@ngrx/store';
+import state from './state/state';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   imports: [
@@ -31,14 +37,21 @@ import { TranslateModule } from '@ngx-translate/core';
     MdInputModule,
     MdProgressSpinnerModule,
     MdSnackBarModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    StoreModule.provideStore(state),
+    StoreDevtoolsModule.instrumentOnlyWithExtension({
+      maxAge: 5
+    }),
+    EffectsModule.run(TodoEffects)
   ],
   declarations: [
     TodosComponent,
     AddTodoComponent
   ],
   providers: [
-    TodosService
+    TodosService,
+    TodoEffects,
+    TodoActions
   ],
   entryComponents: [
     AddTodoComponent
