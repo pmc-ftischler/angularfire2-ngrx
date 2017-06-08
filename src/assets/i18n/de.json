@@ -1,5 +1,5 @@
 {
-  "app.title": "Ngrx Angularfire 2 Demo Todos App",
+  "app.title": "ngrx Angularfire 2 Demo To-Dos App",
   "todos.header": "To-Dos",
   "todos.snackBar.addTodoSuccess": "Der Eintrag wurde erfolgreich hinzugefügt",
   "todos.snackBar.updateTodoSuccess": "Der Eintrag wurde erfolgreich aktualisiert",
