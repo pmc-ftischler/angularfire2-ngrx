@@ -36,13 +36,19 @@ export class TodoFormComponent implements OnInit {
       return false;
     }
 
-    const todoElement: Todo = {
-      title: this.title.value,
-      text: this.text.value
-    };
+    let todoElement: Todo;
 
-    if (this.todoElement && this.todoElement.$key) {
-      todoElement.$key = this.todoElement.$key;
+    if (this.todoElement) {
+      if (this.todoElement.text !== this.text.value || this.todoElement.title !== this.title.value) {
+        todoElement = this.todoElement;
+        todoElement.title = this.title.value;
+        todoElement.text = this.text.value;
+      }
+    } else {
+      todoElement = {
+        title: this.title.value,
+        text: this.text.value
+      };
     }
 
     this.formClosed.emit(todoElement);
