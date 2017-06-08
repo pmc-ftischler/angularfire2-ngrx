@@ -7,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Store } from '@ngrx/store';
 import { AppState } from './state/state';
 import { TodoActions } from './actions/todo-actions';
+import { UpdateTodoComponent } from './update-todo/update-todo.component';
 
 @Component({
   selector: 'ngrxfire-todos',
@@ -44,6 +45,7 @@ export class TodosComponent implements OnInit {
     dialogConfig.width = '400px';
 
     const dialogRef = this.mdDialog.open(AddTodoComponent, dialogConfig);
+
     dialogRef.afterClosed().subscribe(todoElement => {
       if (todoElement) {
         const snackBarConfig = new MdSnackBarConfig();
@@ -60,5 +62,31 @@ export class TodosComponent implements OnInit {
    */
   removeTodo(todoElement: Todo) {
     this.store.dispatch(this.todoActions.removeTodo(todoElement));
+    const snackBarConfig = new MdSnackBarConfig();
+    snackBarConfig.duration = 2000;
+    this.mdSnackBar.open(this.translateService.instant('todos.snackBar.removeTodoSuccess'), null, snackBarConfig);
+  }
+
+  /**
+   * Opens a new dialog to update a TodoElement
+   * @param todoUpdateElement
+   */
+  openUpdateTodoDialog(todoUpdateElement: Todo) {
+    const dialogConfig: MdDialogConfig = new MdDialogConfig();
+    dialogConfig.width = '400px';
+    dialogConfig.data = {
+      todoElement: todoUpdateElement
+    };
+
+    const dialogRef = this.mdDialog.open(UpdateTodoComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(todoElement => {
+      if (todoElement) {
+        const snackBarConfig = new MdSnackBarConfig();
+        snackBarConfig.duration = 2000;
+        this.mdSnackBar.open(this.translateService.instant('todos.snackBar.updateTodoSuccess'), null, snackBarConfig);
+        this.store.dispatch(this.todoActions.updateTodo(todoElement));
+      }
+    });
   }
 }

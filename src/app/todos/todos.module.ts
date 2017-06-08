@@ -9,7 +9,7 @@ import {
   MdDialogModule,
   MdIconModule, MdInputModule,
   MdListModule,
-  MdProgressSpinnerModule, MdSnackBarModule
+  MdProgressSpinnerModule, MdSnackBarModule, MdTooltipModule
 } from '@angular/material';
 import { TodosService } from './services/todos.service';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -22,6 +22,8 @@ import { StoreModule } from '@ngrx/store';
 import state from './state/state';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { TodoFormComponent } from './todo-form/todo-form.component';
+import { UpdateTodoComponent } from './update-todo/update-todo.component';
 
 @NgModule({
   imports: [
@@ -37,6 +39,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     MdInputModule,
     MdProgressSpinnerModule,
     MdSnackBarModule,
+    MdTooltipModule,
     AngularFireDatabaseModule,
     StoreModule.provideStore(state),
     StoreDevtoolsModule.instrumentOnlyWithExtension({
@@ -46,7 +49,9 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
   ],
   declarations: [
     TodosComponent,
-    AddTodoComponent
+    AddTodoComponent,
+    UpdateTodoComponent,
+    TodoFormComponent
   ],
   providers: [
     TodosService,
@@ -54,7 +59,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     TodoActions
   ],
   entryComponents: [
-    AddTodoComponent
+    AddTodoComponent,
+    UpdateTodoComponent
   ]
 })
 export class TodosModule {

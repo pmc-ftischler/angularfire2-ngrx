@@ -9,7 +9,10 @@
         <md-icon md-list-icon>content_paste</md-icon>
         <h4 md-line><strong>{{ todo?.title }}</strong></h4>
         <p md-line>{{ todo?.text }}</p>
-        <button md-icon-button (click)="removeTodo(todo)">
+        <button md-icon-button (click)="openUpdateTodoDialog(todo)" mdTooltip="{{ 'todos.tooltip.update' | translate}}">
+          <md-icon>create</md-icon>
+        </button>
+        <button md-icon-button (click)="removeTodo(todo)" mdTooltip="{{ 'todos.tooltip.remove' | translate}}">
           <md-icon>delete</md-icon>
         </button>
       </md-list-item>
@@ -20,6 +23,6 @@
     <p *ngIf="(todos | async)?.length === 0">{{ 'todos.noTodos' | translate }}</p>
   </md-card-content>
 </md-card>
-<button md-fab class="todos-add-button" (click)="openNewTodoDialog()">
+<button md-fab class="todos-add-button" (click)="openNewTodoDialog()" mdTooltip="{{ 'todos.tooltip.add' | translate}}">
   <md-icon>add</md-icon>
 </button>
