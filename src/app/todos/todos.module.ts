@@ -24,6 +24,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { TodoFormComponent } from './todo-form/todo-form.component';
 import { UpdateTodoComponent } from './update-todo/update-todo.component';
+import { SpinnerActions } from './actions/spinner-actions';
 
 @NgModule({
   imports: [
@@ -56,7 +57,8 @@ import { UpdateTodoComponent } from './update-todo/update-todo.component';
   providers: [
     TodosService,
     TodoEffects,
-    TodoActions
+    TodoActions,
+    SpinnerActions
   ],
   entryComponents: [
     AddTodoComponent,

@@ -4,23 +4,28 @@
   </md-card-header>
   <md-divider></md-divider>
   <md-card-content>
-    <md-list *ngIf="todos | async; else spinner; let todos">
-      <md-list-item *ngFor="let todo of todos">
-        <md-icon md-list-icon>content_paste</md-icon>
-        <h4 md-line><strong>{{ todo?.title }}</strong></h4>
-        <p md-line>{{ todo?.text }}</p>
-        <button md-icon-button (click)="openUpdateTodoDialog(todo)" mdTooltip="{{ 'todos.tooltip.update' | translate}}">
-          <md-icon>create</md-icon>
-        </button>
-        <button md-icon-button (click)="removeTodo(todo)" mdTooltip="{{ 'todos.tooltip.remove' | translate}}">
-          <md-icon>delete</md-icon>
-        </button>
-      </md-list-item>
-    </md-list>
-    <ng-template #spinner>
+    <ng-template #showSpinner>
       <md-spinner color="primary" class="todos-spinner"></md-spinner>
     </ng-template>
-    <p *ngIf="(todos | async)?.length === 0">{{ 'todos.noTodos' | translate }}</p>
+    <div *ngIf="!(spinner | async)?.busy; else showSpinner; let notBusy">
+      <div *ngIf="notBusy && (todos | async) as todos">
+        <p *ngIf="todos?.length === 0">{{ 'todos.noTodos' | translate }}</p>
+        <md-list>
+          <md-list-item *ngFor="let todo of todos">
+            <md-icon md-list-icon>content_paste</md-icon>
+            <h4 md-line><strong>{{ todo?.title }}</strong></h4>
+            <p md-line>{{ todo?.text }}</p>
+            <button md-icon-button (click)="openUpdateTodoDialog(todo)"
+                    mdTooltip="{{ 'todos.tooltip.update' | translate}}">
+              <md-icon>create</md-icon>
+            </button>
+            <button md-icon-button (click)="removeTodo(todo)" mdTooltip="{{ 'todos.tooltip.remove' | translate}}">
+              <md-icon>delete</md-icon>
+            </button>
+          </md-list-item>
+        </md-list>
+      </div>
+    </div>
   </md-card-content>
 </md-card>
 <button md-fab class="todos-add-button" (click)="openNewTodoDialog()" mdTooltip="{{ 'todos.tooltip.add' | translate}}">

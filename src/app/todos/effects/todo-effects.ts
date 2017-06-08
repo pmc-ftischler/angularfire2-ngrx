@@ -5,7 +5,6 @@ import { TodosService } from '../services/todos.service';
 
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/mapTo';
 import 'rxjs/add/operator/switchMap';
 
 @Injectable()
@@ -33,5 +32,7 @@ export class TodoEffects {
     .switchMap(todo => this.todosService.removeTodo(todo))
     .filter(() => false);
 
-  constructor(private update$: Actions, private todoActions: TodoActions, private todosService: TodosService) { }
+  constructor(private update$: Actions, private todoActions: TodoActions,
+              private todosService: TodosService) {
+  }
 }

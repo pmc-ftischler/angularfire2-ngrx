@@ -8,6 +8,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from './state/state';
 import { TodoActions } from './actions/todo-actions';
 import { UpdateTodoComponent } from './update-todo/update-todo.component';
+import { Spinner } from './models/spinner';
 
 @Component({
   selector: 'ngrxfire-todos',
@@ -15,6 +16,7 @@ import { UpdateTodoComponent } from './update-todo/update-todo.component';
   styleUrls: ['./todos.component.scss']
 })
 export class TodosComponent implements OnInit {
+  public spinner: Observable<Spinner>;
   public todos: Observable<Todo[]>;
 
   /**
@@ -34,6 +36,7 @@ export class TodosComponent implements OnInit {
    * NgOnInit for TodosComponent
    */
   ngOnInit() {
+    this.spinner = this.store.select('spinner');
     this.todos = this.store.select('todoList');
   }
 
