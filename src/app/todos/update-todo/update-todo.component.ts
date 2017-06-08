@@ -1,11 +1,12 @@
-import { Component, Inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { MD_DIALOG_DATA, MdDialogRef } from '@angular/material';
 import { Todo } from '../models/todo';
 
 @Component({
   selector: 'ngrxfire-update-todo',
   templateUrl: './update-todo.component.html',
-  styleUrls: ['./update-todo.component.scss']
+  styleUrls: ['./update-todo.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UpdateTodoComponent {
   public todoElement: Todo;
