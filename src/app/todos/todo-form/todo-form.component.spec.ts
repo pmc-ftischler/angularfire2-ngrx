@@ -8,9 +8,10 @@ describe('TodoFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TodoFormComponent ]
-    })
-    .compileComponents();
+      declarations: [
+        TodoFormComponent
+      ]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
