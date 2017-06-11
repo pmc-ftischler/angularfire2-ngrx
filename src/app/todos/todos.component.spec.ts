@@ -1,12 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TodosComponent } from './todos.component';
-import { MdButtonModule, MdCardModule, MdListModule, MdTooltipModule } from '@angular/material';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import {
+  MdButtonModule, MdCardModule, MdDialogModule, MdListModule, MdSnackBarModule,
+  MdTooltipModule
+} from '@angular/material';
+import { TranslateModule, TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs/Observable';
 import { StoreModule } from '@ngrx/store';
 
 import state from './state/state';
+import { TodoActions } from './actions/todo-actions';
+import { TodosService } from './services/todos.service';
+import { SpinnerActions } from './actions/spinner-actions';
+import { TodoEffects } from './effects/todo-effects';
 
 class TranslateServiceMock extends TranslateService {
   constructor() {
@@ -14,6 +21,12 @@ class TranslateServiceMock extends TranslateService {
   }
   get(param): Observable<any> {
     return Observable.from(param);
+  }
+}
+
+class TranslatePipeMock extends TranslatePipe {
+  transform(param) {
+    return param;
   }
 }
 
@@ -25,17 +38,24 @@ fdescribe('TodosComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         MdCardModule,
-        MdListModule,
         MdButtonModule,
+        MdListModule,
+        MdDialogModule,
         MdTooltipModule,
+        MdSnackBarModule,
         TranslateModule.forRoot(),
-        StoreModule.provideStore(state),
+        StoreModule.provideStore(state)
       ],
       declarations: [
-        TodosComponent
+        TodosComponent,
+        TranslatePipeMock
       ],
       providers: [
-        {provide: TranslateService, useClass: TranslateServiceMock}
+        {provide: TranslateService, useClass: TranslateServiceMock},
+        TodosService,
+        TodoEffects,
+        TodoActions,
+        SpinnerActions
       ]
     }).compileComponents();
   }));
