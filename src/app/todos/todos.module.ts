@@ -19,12 +19,13 @@ import { TranslateModule } from '@ngx-translate/core';
 import { TodoEffects } from './effects/todo-effects';
 import { TodoActions } from './actions/todo-actions';
 import { StoreModule } from '@ngrx/store';
-import state from './state/state';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { TodoFormComponent } from './todo-form/todo-form.component';
 import { UpdateTodoComponent } from './update-todo/update-todo.component';
 import { SpinnerActions } from './actions/spinner-actions';
+import { todoListReducer } from './reducers/todo-list';
+import { spinnerReducer } from './reducers/spinner';
 
 @NgModule({
   imports: [
@@ -42,7 +43,10 @@ import { SpinnerActions } from './actions/spinner-actions';
     MdSnackBarModule,
     MdTooltipModule,
     AngularFireDatabaseModule,
-    StoreModule.provideStore(state),
+    StoreModule.provideStore({
+      todoList: todoListReducer,
+      spinner: spinnerReducer
+    }),
     StoreDevtoolsModule.instrumentOnlyWithExtension({
       maxAge: 5
     }),
